@@ -126,6 +126,9 @@ def _parseSchwabPosition(p: _SchwabPosition) -> Optional[Position]:
         instrument = _parseOption(p.symbol)
     elif re.match(r"Fixed Income", p.securityType):
         instrument = Bond(p.symbol, currency=Currency.USD)
+    elif re.match(r"Cash and Money Market", p.securityType):
+        instrument=Cash(currency=Currency.USD)
+
     else:
         raise ValueError(f"Unrecognized security type: {p.securityType}")
 
